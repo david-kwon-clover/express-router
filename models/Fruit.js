@@ -1,9 +1,8 @@
-const Sequelize = require("sequelize");
-const db = require("../db/connection");
+const { db, DataTypes } = require("../db/connection.js");
 
-const Fruit = db.define("fruit", {
-    name: Sequelize.STRING,
-    color: Sequelize.STRING
+const Fruit = db.define("Fruit", {
+    name: DataTypes.STRING,
+    color: DataTypes.STRING
 })
 
 module.exports = Fruit;

@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../models");
+const { User } = require("../models/index.js");
 const usersRouter = express.Router();
 
 usersRouter.get("/", async (req, res, next) => {
@@ -26,3 +26,13 @@ usersRouter.get("/:id", async (req, res, next) => {
     }
 })
 
+usersRouter.post("/", async (req, res, next) => {
+    try {
+        const newUser = await User.create(req.body);
+        res.status(201).json(newUser);
+    } catch(error) {
+        next(error);
+    }
+})
+
+module.exports = usersRouter;
