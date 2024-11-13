@@ -44,4 +44,13 @@ usersRouter.put("/:id", async (req, res, next) => {
   }
 });
 
+usersRouter.delete("/:id", async (req, res, next) => {
+    try {
+        const deletedUser = await User.destroy({ where: { id: req.params.id } });
+        res.status(200).json(deletedUser);
+    } catch(error) {
+        next(error);
+    }
+})
+
 module.exports = usersRouter;
